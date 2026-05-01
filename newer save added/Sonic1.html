@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Sonic 1</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      overflow: hidden;
+    }
+
+    #game {
+      width: 100vw;
+      height: 100vh;
+      background: black;
+    }
+
+    /* Force emulator canvas to render */
+    #game canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block !important;
+      opacity: 1 !important;
+      background: black !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="game"></div>
+
+  <script>
+    // EmulatorJS config
+    EJS_player = "#game";
+    EJS_core = "segaMD";
+    EJS_color = "#000000";
+    EJS_startOnLoaded = true;
+    EJS_pathtodata = "https://cdn.jsdelivr.net/gh/genizy/emu@master/";
+    EJS_gameUrl = "https://raw.githubusercontent.com/DoggyGamesShow123/gen/main/roms/Sonic1.bin";
+
+    // Disable shaders (fixes black screen on some GPUs)
+    EJS_Buttons = {
+      shader: false
+    };
+
+    // Delay ensures #game is fully rendered before emulator starts
+    setTimeout(() => {
+      const script = document.createElement("script");
+      script.src = "https://cdn.jsdelivr.net/gh/genizy/emu@master/loader.js";
+      document.body.appendChild(script);
+    }, 50);
+  </script>
+</body>
+</html>
