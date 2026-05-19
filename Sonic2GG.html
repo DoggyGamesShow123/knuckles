@@ -20,7 +20,7 @@
     background: black;
   }
 
-  /* Centered emulator viewport aligned to bezel screen */
+  /* PERFECTLY centered emulator inside bezel screen */
   #viewport {
     position: absolute;
 
@@ -29,9 +29,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
 
-    /* Adjust to match bezel screen position */
-    margin-left: 2.3vw;   /* moves right */
-    margin-top: -1.4vw;   /* moves up */
+    /* Fine‑tuned offsets to match bezel screen cutout */
+    margin-left: 2.1vw;   /* moves right */
+    margin-top: -1.2vw;   /* moves up */
 
     width: 38vw;
     aspect-ratio: 4 / 3;
@@ -90,14 +90,13 @@
 
 </div>
 
-<!-- AUTO-PRESS START BUTTON -->
+<!-- AUTO-PRESS START FOR WEBRETRO LOADING SCREEN -->
 <script>
 window.addEventListener("load", () => {
   const frame = document.getElementById("emulator");
 
-  // Wait for WebRetro to initialize
-  setTimeout(() => {
-    // Press START (Enter key)
+  frame.onload = () => {
+    // Press START (Enter)
     frame.contentWindow.postMessage(
       { type: "keydown", key: "Enter" }, "*"
     );
@@ -107,9 +106,8 @@ window.addEventListener("load", () => {
       frame.contentWindow.postMessage(
         { type: "keyup", key: "Enter" }, "*"
       );
-    }, 150);
-
-  }, 1500); // delay long enough for core + ROM to load
+    }, 120);
+  };
 });
 </script>
 
