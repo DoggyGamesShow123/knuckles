@@ -90,5 +90,28 @@
 
 </div>
 
+<!-- AUTO-PRESS START BUTTON -->
+<script>
+window.addEventListener("load", () => {
+  const frame = document.getElementById("emulator");
+
+  // Wait for WebRetro to initialize
+  setTimeout(() => {
+    // Press START (Enter key)
+    frame.contentWindow.postMessage(
+      { type: "keydown", key: "Enter" }, "*"
+    );
+
+    // Release START
+    setTimeout(() => {
+      frame.contentWindow.postMessage(
+        { type: "keyup", key: "Enter" }, "*"
+      );
+    }, 150);
+
+  }, 1500); // delay long enough for core + ROM to load
+});
+</script>
+
 </body>
 </html>
