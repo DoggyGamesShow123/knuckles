@@ -20,7 +20,7 @@
     background: black;
   }
 
-  /* PERFECTLY centered emulator inside bezel screen */
+  /* PERFECT alignment for NyNy77 Game Gear bezel */
   #viewport {
     position: absolute;
 
@@ -29,15 +29,15 @@
     left: 50%;
     transform: translate(-50%, -50%);
 
-    /* Fine‑tuned offsets to match bezel screen cutout */
-    margin-left: 2.1vw;   /* moves right */
-    margin-top: -1.2vw;   /* moves up */
+    /* Fine‑tuned offsets for THIS bezel */
+    margin-left: 1.9vw;   /* moves right */
+    margin-top: -0.9vw;   /* moves up */
 
-    width: 38vw;
+    width: 36.5vw;        /* NyNy77 screen is slightly smaller */
     aspect-ratio: 4 / 3;
 
-    max-width: 720px;
-    max-height: 540px;
+    max-width: 700px;
+    max-height: 525px;
 
     background: black;
     overflow: hidden;
@@ -56,18 +56,18 @@
     position: absolute;
     inset: 0;
     background:
-      url("https://raw.githubusercontent.com/libretro/overlay-borders/master/16x9%20Collections/Nosh01%201440%20Plain/Sega-Game-Gear-Bezel-16x9-2560x1440.png")
+      url("https://raw.githubusercontent.com/libretro/overlay-borders/master/16x9%20Collections/NyNy77%201080%20Bezel/SegaGameGear-nyny77.png")
       center center / contain no-repeat;
     pointer-events: none;
     z-index: 3;
   }
 
   @media (max-width: 900px) {
-    #viewport { width: 52vw; }
+    #viewport { width: 50vw; }
   }
 
   @media (max-width: 600px) {
-    #viewport { width: 68vw; }
+    #viewport { width: 65vw; }
   }
 </style>
 </head>
@@ -85,7 +85,7 @@
     ></iframe>
   </div>
 
-  <!-- Game Gear Bezel Overlay -->
+  <!-- NyNy77 Game Gear Bezel -->
   <div id="bezel"></div>
 
 </div>
