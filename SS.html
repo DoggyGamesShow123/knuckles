@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Sonic spinball</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: black;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  /* Main stage */
+  #stage {
+    position: fixed;
+    inset: 0;
+    background: black;
+  }
+
+  /* Viewport holding the emulator */
+  #viewport {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 100vh;
+    aspect-ratio: 4 / 3;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    background: black;
+    z-index: 3; /* ABOVE bezel */
+  }
+
+  /* EmulatorJS container */
+  #game {
+    width: 100%;
+    height: 100%;
+    background: black;
+  }
+
+  /* Force emulator canvas to render */
+  #game canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+    opacity: 1 !important;
+    background: black !important;
+  }
+
+  /* Bezel overlay (visual only) */
+  #bezel {
+    position: absolute;
+    inset: 0;
+    background: url("https://raw.githubusercontent.com/libretro/overlay-borders/master/16x9%20Collections/Nosh01%201440%20Plain/Sega-Genesis-16bit-Bezel-16x9-2560x1440.png")
+      center / contain no-repeat;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* Hide bezel on screens narrower than 16:9 */
+  @media (max-aspect-ratio: 16/9) {
+    #bezel {
+      display: none;
+    }
+  }
+</style>
+</head>
+
+<body>
+  <div id="stage">
+
+    <!-- EmulatorJS viewport -->
+    <div id="viewport">
+      <div id="game"></div>
+    </div>
+
+    <!-- Bezel overlay -->
+    <div id="bezel"></div>
+
+  </div>
+
+  <script>
+    /* EmulatorJS config */
+    EJS_player = "#game";
+    EJS_core = "segaMD";
+    EJS_color = "#000000";
+    EJS_startOnLoaded = true;
+    EJS_pathtodata = "https://cdn.jsdelivr.net/gh/genizy/emu@master/";
+    EJS_gameUrl = "https://raw.githubusercontent.com/DoggyGamesShow123/knuckles/main/Sonic%20Spinball%20(U)%20%5B!%5D.gen";
+
+    /* Disable shaders (fixes black screen on some GPUs) */
+    EJS_Buttons = {
+      shader: false
+    };
+
+    /* Load emulator after viewport is ready */
+    setTimeout(() => {
+      const script = document.createElement("script");
+      script.src = "https://cdn.jsdelivr.net/gh/genizy/emu@master/loader.js";
+      document.body.appendChild(script);
+    }, 50);
+  </script>
+</body>
+</html>
